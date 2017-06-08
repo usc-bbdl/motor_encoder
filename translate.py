@@ -1,5 +1,5 @@
 #This function maps degrees to pulse length
-#pulseRange(value,minDegrees,MaxDegrees,Min pulse length out of 4096, max pulse length out of 4096)
+#pulseRange(value you want to convert,minDegrees,MaxDegrees,Min pulse length out of 4096, max pulse length out of 4096)
 def pulseRange(value, leftMin, leftMax, rightMin, rightMax):
     # Figure out how 'wide' each range is
     leftSpan = leftMax - leftMin
