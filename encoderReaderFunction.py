@@ -1,9 +1,9 @@
+# This class enables the reading of the encoders.
 import RPi.GPIO as GPIO
 import time
 
 class Encoder:	
 	def __init__(self,A_pin,B_pin,numberOfEncoders,ppr): #Constructor
-		#import the GPIO and time package
 		self.A_pin = A_pin
 		self.B_pin = B_pin
 		self.ppr = ppr
@@ -41,9 +41,10 @@ class Encoder:
 	def encoderReader(self): # Function that reads encoders
 		self.change = 0
 		for c in range(self.numberOfEncoders):
-			self.curModeA[c] = GPIO.input(self.A_pin[c])
-                	self.curModeB[c] = GPIO.input(self.B_pin[c])
-   			if(self.curModeA[c] != self.lastModeA[c]):
+			self.curModeA[c] = GPIO.input(self.A_pin[c]) # Read current status of pin A.
+                	self.curModeB[c] = GPIO.input(self.B_pin[c]) # Read current status of pin B.
+   			# The code below counts the pulse changes to keep track of clockwise and counter-clockwise rotations.
+			if(self.curModeA[c] != self.lastModeA[c]):   
 				if(self.curModeA[c] ==0):
 					if(self.curModeB[c]==0):
 						self.count[c]= self.count[c] - 1.0
@@ -75,6 +76,6 @@ class Encoder:
 			for c in range(self.numberOfEncoders):
 				self.count_last[c] = self.count[c] 
 				self.time_=self.time_+self.dt
-				self.countInDeg[c] = ((self.count[c]/self.ppr)*360)/4
+				self.countInDeg[c] = ((self.count[c]/self.ppr)*360)/4 # Converts count to degrees.
 		return self.countInDeg
 
