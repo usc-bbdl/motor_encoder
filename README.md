@@ -7,7 +7,9 @@ Note(@@@): When you set the servos that we (MG 996R) have to 180 degrees or 512 
 To understand how pulse lengths allow control of servos visit: https://www.youtube.com/watch?v=ddlDgUymbxc&t=185s&index=15&list=PLKgqFZFLmrATtqQgirSF6pDOexzkuzEmG
 
 0deg ;.5ms pulse width time
+
 neutral or 90deg ; 1.5ms pulse width time
+
 180deg ; 2.5ms pulse width time
 
 ***If you need to calculate pulse-width in microseconds, you can do that by first figuring out how long
@@ -18,7 +20,9 @@ that would be 1 millisecond. Then divide by 4096 to get the time per tick, eg 1 
 
 Example:
 MinPulseLength (0deg) =.0005/((1/50)/4096) = 102.4 pulse width
+
 Neurtral(90deg) = .0015/((1/50)/4096) = 307.2
+
 MaxPluseLength (180deg) = .0025/((1/50)/4096) = 512 @@@needs to be calibrated
 
 In the code you would modify the following function with the correct limits based on the motor.  motorPosition.Motor(freq,minDeg,maxDeg,minPulseLength, maxPulseLength)
